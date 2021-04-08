@@ -1,39 +1,6 @@
-name: PHP Composer
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-language: PHP
-jobs:
-  build:    
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        php-version:
-          - 7.4
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}
-        restore-keys: php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
+language: php
+php:
+- 7.4
+before_script:
+  - composer install
+script: composer test
