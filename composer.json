@@ -1,6 +1,8 @@
 
 
 {
+    "name": "Tarea5-TRavis",
+    "description": "Tarea realizada para el curso de GitHub",
     "license": "(LGPL-2.1-only or GPL-3.0-or-later)",
     "authors": [
         {
