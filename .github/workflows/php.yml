@@ -19,9 +19,6 @@ jobs:
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v2
-    
-    - name: Validate php
-      
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
